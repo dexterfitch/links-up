@@ -1,0 +1,20 @@
+<div ng-show="categories.length">
+  <h1>Check out these cool categories:</h1>
+  <ul>
+    <li ng-repeat="item in categories">
+      <a ui-sref="categories.links({ categoryId: item.id })">{{ item.name }}</a>
+    </li>
+  </ul>
+</div>
+
+<div class="col-md-4">
+  <h3>Add a new link</h3>
+  <form ng-submit="CategoriesFactory.addCategory()" class="form-inline" role="form">
+    <div class="form-group">
+      <input type="text" ng-model="CategoriesFactory.categoryName" class="form-control" placeholder="Enter your name">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+<div ui-view> </div>
