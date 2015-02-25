@@ -2,7 +2,7 @@
   <h2>Links in {{ category.name }}</h2>
   <ul>
     <li ng-repeat="item in category.links">
-       <a href="{{ item.website }}" target="_blank">{{ item.name }}</a>
+       <span ng-click="addToRating()"><i class="fa fa-plus-circle"></i></span> {{ item.rating }} <span ng-click="subtractFromRating()"><i class="fa fa-minus-circle"></i></span> - <a href="{{ item.website }}" target="_blank">{{ item.name }}</a>
     </li>
   </ul>
 </div>
