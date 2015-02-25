@@ -1,8 +1,8 @@
-linksMachine.factory('CategoriesFactory', function CategoriesFactory() {
+linkMachine.factory('CategoriesFactory', function CategoriesFactory() {
   var factory = {};
   factory.categories = [];
   factory.addCategory = function() {
-    factory.categories.push({ name: factory.categoryName, id: factory.links.length + 1 });
+    factory.categories.push({ name: factory.categoryName, id: factory.categories.length + 1, links: [] });
     factory.categoryName = null;
   };
 

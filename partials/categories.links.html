@@ -2,7 +2,7 @@
   <h2>Links in {{ category.name }}</h2>
   <ul>
     <li ng-repeat="item in category.links">
-      {{ item.rating }} - <a href="{{ item.website }}">{{ item.name }}</a>
+       <a href="{{ item.website }}" target="_blank">{{ item.name }}</a>
     </li>
   </ul>
 </div>
