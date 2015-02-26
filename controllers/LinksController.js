@@ -2,19 +2,29 @@ linkMachine.controller('LinksCtrl', function LinksCtrl($scope, $stateParams, Cat
   $scope.category = UtilitiesFactory.findById(CategoriesFactory.categories, $stateParams.categoryId)
 
   $scope.addLink = function() {
-    $scope.category.links.push({ name: $scope.linkName, website: $scope.webSite, rating: 0 });
+    $scope.category.links.push({
+      name: $scope.linkName,
+      website: $scope.webSite,
+      comments: [],
+      rating: 0,
+
+      addToRating: function() {
+        this.rating += 1;
+      },
+
+      subtractFromRating: function() {
+        this.rating -= 1;
+      },
+
+      addComment: function() {
+        categories.links.comments.push($scope.comment);
+      }
+
+    });
+
     $scope.linkName = null;
     $scope.webSite = null;
-  };
 
-  $scope.addToRating = function(link) {
-    var index = factory.links.indexOf(link);
-    factory.links[index].rating += 1;
-  };
 
-  $scope.subtractFromRating = function(link) {
-    var index = factory.links.indexOf(link);
-    factory.links[index].rating -= 1;
   };
-
 });
