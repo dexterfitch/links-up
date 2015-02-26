@@ -7,24 +7,30 @@
        {{ item.rating }}
        <span ng-click="item.subtractFromRating()"><i class="fa fa-minus-circle"></i></span> -
        <a href="{{ item.website }}" target="_blank">{{ item.name }}</a> -
-       <span ng-click=""><i class="fa fa-comments"></i></span> <!-- See all comments -->
 
-       <!-- <div ng-show=""> -->
+       <span ng-click="allComments = !allComments"><i class="fa fa-comments"></i></span>
 
-       <span ng-click="showCommentForm = true"><i class="fa fa-comment"></i></span> <!-- Add new comment -->
+       <span ng-click="showCommentForm = true"><i class="fa fa-comment"></i></span>
+
+       <br>
+
+       <span ng-show="allComments"><ul><li ng-repeat="comment in item.comments">{{ comment }}</li></ul></span>
 
        <span ng-show="showCommentForm" ng-submit="showCommentForm = false">
-         <form ng-submit="item.addComment(comment)" class="form-inline" role="form">
+         <form ng-submit="item.addComment(comment)" class="form-inline" role="form" name="commentForm">
            <div class="form-group">
-             <textarea type="text" ng-model="comment" class="form-control" placeholder="comment"></textarea>
+             <textarea type="text" ng-model="$parentScope.comment" class="form-control" placeholder="comment"></textarea>
            </div>
            <button type="submit" class="btn btn-default">Submit</button>
          </form>
       </span>
-      {{ item.comments }}
+
 
     </li>
   </ul>
+
+
+
 </div>
 
 <div>
