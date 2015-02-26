@@ -1,6 +1,7 @@
 linkMachine.controller('LinksCtrl', function LinksCtrl($scope, $stateParams, CategoriesFactory, UtilitiesFactory) {
   $scope.category = UtilitiesFactory.findById(CategoriesFactory.categories, $stateParams.categoryId)
   $scope.$parentScope = $scope
+
   $scope.addLink = function() {
 
     $scope.category.links.push({
@@ -8,14 +9,17 @@ linkMachine.controller('LinksCtrl', function LinksCtrl($scope, $stateParams, Cat
       website: $scope.webSite,
       comments: [],
       rating: 0,
+      dateNow: Date.now(),
 
       addToRating: function() {
-        this.rating += 1;
+        this.rating++;
+
       },
 
       subtractFromRating: function() {
-        this.rating -= 1;
+        this.rating--;
       },
+
 
       addComment: function(comment) {
         this.comments.push(comment);
@@ -24,11 +28,8 @@ linkMachine.controller('LinksCtrl', function LinksCtrl($scope, $stateParams, Cat
 
     });
 
-
-
     $scope.linkName = null;
     $scope.webSite = null;
-
   };
 
-});
+ });

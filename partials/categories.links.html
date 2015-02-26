@@ -2,11 +2,11 @@
   <h2>Links in {{ category.name }}</h2>
 
   <ul>
-    <li ng-repeat="item in category.links | orderBy:'rating': true">
+    <li ng-repeat="item in category.links | orderBy:['rating', 'dateNow']: true">
        <span ng-click="item.addToRating()"><i class="fa fa-plus-circle"></i></span>
        {{ item.rating }}
        <span ng-click="item.subtractFromRating()"><i class="fa fa-minus-circle"></i></span> -
-       <a href="{{ item.website }}" target="_blank">{{ item.name }}</a> -
+       <a href="{{ item.website }}" target="_blank">{{ item.name }}</a>
 
        <span ng-click="allComments = !allComments"><i class="fa fa-comments"></i></span>
 
@@ -21,7 +21,7 @@
            <div class="form-group">
              <textarea type="text" ng-model="$parentScope.comment" class="form-control" placeholder="comment"></textarea>
            </div>
-           <button type="submit" class="btn btn-default">Submit</button>
+           <button type="submit" ng-click="item.calculateScore()" class="btn btn-default">Submit</button>
          </form>
       </span>
 
@@ -40,6 +40,6 @@
       <input type="text" ng-model="linkName" class="form-control" placeholder="Site Name">
       <input type="text" ng-model="webSite" class="form-control" placeholder="Site Address">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" ng-click="" class="btn btn-default">Submit</button>
   </form>
 </div>
