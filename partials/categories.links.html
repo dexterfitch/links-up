@@ -2,7 +2,7 @@
   <h2>Links in {{ category.name }}</h2>
 
   <ul>
-    <li ng-repeat="item in category.links |orderBy:'rating': true">
+    <li ng-repeat="item in category.links | orderBy:'rating': true">
        <span ng-click="item.addToRating()"><i class="fa fa-plus-circle"></i></span>
        {{ item.rating }}
        <span ng-click="item.subtractFromRating()"><i class="fa fa-minus-circle"></i></span> -
@@ -14,7 +14,7 @@
        <span ng-click="showCommentForm = true"><i class="fa fa-comment"></i></span> <!-- Add new comment -->
 
        <span ng-show="showCommentForm" ng-submit="showCommentForm = false">
-         <form ng-submit="addComment()" class="form-inline" role="form">
+         <form ng-submit="item.addComment(comment)" class="form-inline" role="form">
            <div class="form-group">
              <textarea type="text" ng-model="comment" class="form-control" placeholder="comment"></textarea>
            </div>
