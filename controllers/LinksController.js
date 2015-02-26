@@ -5,7 +5,7 @@ linkMachine.controller('LinksCtrl', function LinksCtrl($scope, $stateParams, Cat
     $scope.category.links.push({
       name: $scope.linkName,
       website: $scope.webSite,
-      comments: [],
+      comment: $scope.comment,
       rating: 0,
 
       addToRating: function() {
@@ -17,7 +17,7 @@ linkMachine.controller('LinksCtrl', function LinksCtrl($scope, $stateParams, Cat
       },
 
       addComment: function() {
-        categories.links.comments.push($scope.comment);
+        comment.push(comment);
       }
 
     });
