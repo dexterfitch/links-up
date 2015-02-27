@@ -1,45 +1,42 @@
-<div ng-show="category.links.length">
-  <h2>Links in {{ category.name }}</h2>
+<div class="col-md-6">
+  <div ng-show="category.links.length" class="col-md-12">
+    <h2>Links in {{ category.name }}</h2>
+    <ul class="list-unstyled">
+      <li ng-repeat="item in category.links | orderBy:['rating', 'dateNow']: true">
+         <span class="larger">
+           <span ng-click="item.addToRating()"><i class="fa fa-plus-circle"></i></span>
+           {{ item.rating }}
+           <span ng-click="item.subtractFromRating()"><i class="fa fa-minus-circle"></i></span> -
+           <a href="{{ item.website }}" target="_blank">{{ item.name }}</a> -
+           <span ng-click="allComments = !allComments"><i class="fa fa-comments"></i></span>
+           <span ng-click="showCommentForm = true"><i class="fa fa-comment"></i></span>
+         </span>
+         <br>
+         <span ng-show="allComments"><ol><li ng-repeat="comment in item.comments">{{ comment }}</li></ol></span>
+         <span ng-show="showCommentForm" ng-submit="showCommentForm = false">
+           <form ng-submit="item.addComment(comment)" class="form-inline" role="form" name="commentForm">
+             <div class="form-group">
+               <textarea type="text" ng-model="$parentScope.comment" class="form-control" placeholder="comment"></textarea>
+             </div>
+             <button type="submit" ng-click="item.calculateScore()" class="btn btn-default">Submit</button>
+           </form>
+        </span>
+      </li>
+    </ul>
+  </div>
 
-  <ul>
-    <li ng-repeat="item in category.links | orderBy:['rating', 'dateNow']: true">
-       <span ng-click="item.addToRating()"><i class="fa fa-plus-circle"></i></span>
-       {{ item.rating }}
-       <span ng-click="item.subtractFromRating()"><i class="fa fa-minus-circle"></i></span> -
-       <a href="{{ item.website }}" target="_blank">{{ item.name }}</a>
+  <div class="col-md-12">
+    <span ng-click="showAddLink = true" class="btn btn-primary">Add Link</span>
 
-       <span ng-click="allComments = !allComments"><i class="fa fa-comments"></i></span>
-
-       <span ng-click="showCommentForm = true"><i class="fa fa-comment"></i></span>
-
-       <br>
-
-       <span ng-show="allComments"><ul><li ng-repeat="comment in item.comments">{{ comment }}</li></ul></span>
-
-       <span ng-show="showCommentForm" ng-submit="showCommentForm = false">
-         <form ng-submit="item.addComment(comment)" class="form-inline" role="form" name="commentForm">
-           <div class="form-group">
-             <textarea type="text" ng-model="$parentScope.comment" class="form-control" placeholder="comment"></textarea>
-           </div>
-           <button type="submit" ng-click="item.calculateScore()" class="btn btn-default">Submit</button>
-         </form>
-      </span>
-
-
-    </li>
-  </ul>
-
-
-
-</div>
-
-<div>
-  <h2>Add a link to {{ category.name }}</h2>
-  <form ng-submit="addLink()" class="form-inline" role="form">
-    <div class="form-group">
-      <input type="text" ng-model="linkName" class="form-control" placeholder="Site Name">
-      <input type="text" ng-model="webSite" class="form-control" placeholder="Site Address">
-    </div>
-    <button type="submit" ng-click="" class="btn btn-default">Submit</button>
-  </form>
+    <span ng-show="showAddLink" ng-submit="showAddLink = false">
+      <h2>Add a link to {{ category.name }}</h2>
+      <form ng-submit="addLink()" class="form-inline" role="form">
+        <div class="form-group">
+          <input type="text" ng-model="linkName" class="form-control" placeholder="Site Name">
+          <input type="text" ng-model="webSite" class="form-control" placeholder="Site Address">
+        </div>
+        <button type="submit" ng-click="" class="btn btn-default">Submit</button>
+      </form>
+    </span>
+  </div>
 </div>

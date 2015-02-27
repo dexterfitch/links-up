@@ -1,20 +1,30 @@
-<div ng-show="categories.length">
-  <h1>Check out these cool categories:</h1>
-  <ul>
-    <li ng-repeat="item in categories">
-      <a ui-sref="categories.links({ categoryId: item.id })">{{ item.name }}</a>
-    </li>
-  </ul>
-</div>
+<h1 class="center">Link Machine</h1>
 
-<div class="col-md-4">
-  <h3>Add a new category</h3>
-  <form ng-submit="CategoriesFactory.addCategory()" class="form-inline" role="form">
-    <div class="form-group">
-      <input type="text" ng-model="CategoriesFactory.categoryName" class="form-control" placeholder="Enter a category">
+<div class="col-md-6">
+  <div ng-show="categories.length">
+    <div class="col-md-12">
+      <h2>Check out these cool categories:</h2>
+      <ul class="list-unstyled">
+        <li ng-repeat="item in categories">
+          <span class="larger"><a ui-sref="categories.links({ categoryId: item.id })">{{ item.name }}</a></span>
+        </li>
+      </ul>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+  </div>
+
+  <div class="col-md-12">
+    <span ng-click="showAddCategory = true" class="btn btn-primary">Add Category</span>
+
+    <span ng-show="showAddCategory" ng-submit="showAddCategory = false">
+      <h3>Add a new category</h3>
+      <form ng-submit="CategoriesFactory.addCategory()" class="form-inline" role="form">
+        <div class="form-group">
+          <input type="text" ng-model="CategoriesFactory.categoryName" class="form-control" placeholder="Enter a category">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </span>
+  </div>
 </div>
 
 <div ui-view> </div>
